@@ -1,0 +1,149 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Company Simulator</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+      *{font-family:Arial;color:white;background-color:black;}
+    </style>
+  </head>
+  <body>
+    <center>
+        <fieldset>
+          <h1>company simulator</h1>
+          <button id="button">click</button>
+          <p id="clicks">clicks: 0</p>
+          <p id="coins">coins: 0</p>
+          <br>
+          <h2>menu</h2>
+          <button id="upgrade">upgrade (50 clicks)</button>
+          <br>
+          <br>
+          <button id="sell">sell clicks (free)</button>
+          <br>
+          <h2>towers</h2>
+          <br>
+          <button id="miner" class="tower">add miner (30 clicks)</button>
+          <br>
+          <br>
+          <button id="seller" class="tower">add seller (20 clicks)</button>
+          <br>
+          <br>
+          <button id="farmer" class="tower">add farmer (50 coins)</button>
+          <br>
+          <br>
+          <button id="monkey" class="tower">add advertisements (1000 coins)</button>
+        <script>// variables
+console.log("Hacked clicks dont sell for much, sunny boy.")
+const thing = document.getElementById("button")
+const clicks = document.getElementById("clicks")
+const upgradebutton = document.getElementById("upgrade")
+const activate = document.getElementById("activate")
+const towerbuttons = document.getElementsByClassName("tower")
+const sell = document.getElementById("sell")
+const ccoins = document.getElementById("coins")
+const NotImplementedErr = Error("Not Implemented!");
+let towers = []
+let i = 0
+let coins = 0
+let upgradething = 1
+let upgradecost = 50
+// gaem logic
+thing.onclick = () => {
+  i = i + upgradething
+  clicks.innerText = "clicks:"+i
+}
+upgradebutton.onclick = () => {
+  if (i > upgradecost-1) {
+    i = i - upgradecost
+    upgradething += 3
+    upgradecost = upgradecost + 50
+    clicks.innerText = "clicks:"+i
+    console.log("clicks:"+i)
+    upgradebutton.innerText = "upgrade ("+upgradecost+" clicks)"
+  } else {
+    alert("You dont have enough coins!")
+  }
+}
+for (let c = 0; c < towerbuttons.length; c++) {
+  let tempbutton = towerbuttons[c]
+  tempbutton.onclick = () => {
+    if (tempbutton.id == "miner") {
+      if (i > 30-1) {
+        towers.push("miner")
+        i = i - 30
+        clicks.innerText = "clicks: "+i
+        console.log("clicks: "+i)
+        console.log("miner added")
+      }
+    }
+    if (i > 20-1) {
+      if (tempbutton.id == "seller") {
+        towers.push("seller")
+        i = i - 20
+        clicks.innerText = "clicks: "+i
+        console.log("seller added")
+      }
+    } 
+    if (coins > 50-1) {
+      if (tempbutton.id == "farmer") {
+        towers.push("farmer")
+        coins = coins - 50
+        ccoins.innerText = "coins: "+coins
+      }
+    } 
+    if (coins > 1000-1) {
+      if (tempbutton.id == "monkey") {
+        towers.push("monkey")
+        coincs = coins - 1000
+        ccoins.innerText = "coins: "+coins
+      }
+    }
+  }
+}
+setInterval(() => {
+  for (let c = 0; c < towers.length; c++) {
+      if (towers[c] == "miner") {
+          console.log("added ")
+          i = i + 2
+          clicks.innerText = "clicks: "+i
+     }
+     if (towers[c] == "seller") {
+         console.log("sold")
+         sell.click()
+     }
+     if (towers[c] == "farmer") {
+   
+         coins = coins + 30
+         ccoins.innerText = "coins: "+coins
+      
+     }
+     if (towers[c] == "monkey") {
+       i = i + 50;
+       clicks.innerText = "clicks: "+i
+     }
+    
+  }
+}, 500)
+sell.onclick = () => {
+  coins += i * 2
+  i = 0
+  clicks.innerText = "clicks: "+i
+  ccoins.innerText = "coins: "+coins
+}
+const hackthemainframe = () => {
+  thing.innerText = "10011101"
+  clicks.innerText = "00001101"
+  upgradebutton.innerText = "1000110"
+}
+
+</script>
+        </fieldset>
+      </center>
+  </body>
+</html>
+
