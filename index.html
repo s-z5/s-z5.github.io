@@ -37,6 +37,9 @@
           <br>
           <br>
           <button id="monkey" class="tower">add advertisements (1000 coins)</button>
+          <br>
+          <br>
+          <button id="investor" class="tower">add investor (100000 coins)</button>
         <script>// variables
 console.log("Hacked clicks dont sell for much, sunny boy.")
 const thing = document.getElementById("button")
@@ -103,6 +106,13 @@ for (let c = 0; c < towerbuttons.length; c++) {
         ccoins.innerText = "coins: "+coins
       }
     }
+    if (coins > 100000-1) {
+      if (tempbutton.id == "investor") {
+        towers.push("investor")
+        coincs = coins - 100000
+        ccoins.innerText = "coins: "+coins
+      }
+    }
   }
 }
 setInterval(() => {
@@ -115,6 +125,10 @@ setInterval(() => {
      if (towers[c] == "seller") {
          console.log("sold")
          sell.click()
+     }
+     if (towers[c] == "investor") {
+         console.log("sold")
+         i = i + math.random()*100000
      }
      if (towers[c] == "farmer") {
    
